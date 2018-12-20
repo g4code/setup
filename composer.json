@@ -28,7 +28,11 @@
         "squizlabs/php_codesniffer" : "3.*",
         "g4/code-coverage"          : "1.*"
     },
-    "require": {},
+    "require": {
+        "g4/config"             : "*",
+        "g4/value-object"       : "2.*",
+        "vanilla/garden-cli"    : "1.*"
+    },
     "scripts": {
         "unit-test": [
             "vendor/bin/phpunit -c tests/unit/phpunit.xml --colors=always --coverage-html tests/unit/coverage"

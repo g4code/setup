@@ -1,0 +1,14 @@
+{
+    "name": "g4/setup",
+    "description": "G4 Setup Config",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Drasko Gomboc",
+            "email": "drasko.gomboc@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

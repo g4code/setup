@@ -1,6 +1,8 @@
 <?php
 
-namespace G4\Setup;
+
+namespace G4\Setup\Config;
+
 
 class Config
 {

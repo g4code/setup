@@ -29,6 +29,7 @@
         "g4/code-coverage"          : "1.*"
     },
     "require": {
+        "clue/stdio-react"      : "2.*",
         "g4/config"             : "*",
         "g4/value-object"       : "2.*",
         "vanilla/garden-cli"    : "1.*"

@@ -18,5 +18,8 @@ vendor
 tests/unit/coverage/*
 !tests/unit/coverage/.gitkeep
 
+private/*
+!private/.gitkeep
+
 *.DS_Store
 ansible.retry

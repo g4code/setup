@@ -2,6 +2,7 @@
 
 namespace G4\Setup;
 
+use Clue\Commander\Router;
 use G4\ValueObject\StringLiteral;
 use React\EventLoop\Factory;
 use Clue\React\Stdio\Stdio;
@@ -25,11 +26,31 @@ class StdioFacade
      */
     private $stdio;
 
+    /**
+     * @var StdioFacade
+     */
+    private static $instance;
 
-    public function __construct()
+
+    private function __construct()
     {
         $this->loop     = Factory::create();
         $this->stdio    = new Stdio($this->loop);
+        $router = new Router();
+        $router->add('exit | quit', [$this, 'end']);
+    }
+
+    private function __clone() {}
+
+    /**
+     * @return StdioFacade
+     */
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new StdioFacade();
+        }
+        return self::$instance;
     }
 
     /**
@@ -48,6 +69,11 @@ class StdioFacade
         }
     }
 
+    public function end()
+    {
+        $this->stdio->end();
+    }
+
     /**
      * @param StringLiteral $inputText
      */
@@ -56,12 +82,28 @@ class StdioFacade
         $this->stdio->getReadline()->setPrompt((string) $inputText);
 
         $this->stdio->on('data', [$this, 'callback']);
+    }
 
+    public function runLoop()
+    {
         $this->loop->run();
     }
 
+    /**
+     * @param callable $callbackFunction
+     */
     public function setCallbackFunction(callable $callbackFunction)
     {
         $this->callbackFunction = $callbackFunction;
+    }
+
+    public function write(...$line)
+    {
+        $this->stdio->write(join(' ', $line) . PHP_EOL);
+    }
+
+    public function writeAll(array $data)
+    {
+        $this->stdio->write('tralala' . PHP_EOL);
     }
 }
